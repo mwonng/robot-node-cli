@@ -1,0 +1,5 @@
+PLACE 1, 2, NORTH
+MoVe
+RePort
+MOVE
+REPORT
