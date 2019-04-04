@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "ava ./test/**.test.js --verbose",
-    "build": "pkg ./index.js --out-path ./release"
+    "build": "pkg ./bin/index.js --out-path ./release"
   },
   "bin": {
     "robot-cli": "./bin/index.js"

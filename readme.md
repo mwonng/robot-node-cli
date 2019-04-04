@@ -1,15 +1,21 @@
 # Robot challenge with Node.js
 
-See detail descrpition [here](#description)
+See detail descrpition [here](#description).
 
 ## Requirement
 This repo are using Node.js with NPM/Yarn as package manager. Please refer link below for installation.
 
-- [Downloa dNode.js ](https://nodejs.org/en/download/) (npm will installed within Node.js by default)
+- [Download Node.js ](https://nodejs.org/en/download/) (npm will installed within Node.js by default).
 
 ## Install Instruction
 
 ### Clone repo
+to start work with GitHub, you have to had Git installed. I assume you already have git installed, but if you don't know, you can check in terminal
+
+```bash
+$ git --version
+```
+if not installed, please redirec to [download Git](https://git-scm.com/downloads)
 
 ```bash
 $ git clone https://github.com/mwonng/robot-node-cli.git
@@ -18,40 +24,44 @@ $ cd robot-node-cli
 
 ### Install dependencies
 
-Install dependencies via package manager
+Install dependencies via package manager.
 
 ```bash
 $ npm install
 ```
 
-or if you use yarn
+or if you using Yarn.
 
 ```bash
 $ yarn
 ```
 
+### Customize your own commands
+
+you can change command in file `./commands.txt` to customize your commands.
+
 ### Run this application
 
 ```bash
-node ./bin/index.js
+$ node ./bin/index.js
 ```
 
 or
 
 ```bash
-./bin/index.js
+$ ./bin/index.js
 ```
 
 ### Test
 
 ```bash
-npm run test
+$ npm run test
 ```
 
-or or if you use yarn
+or or if you using Yarn
 
 ```bash
-yarn test
+$ yarn test
 ```
 
 ### Build a excutable application
@@ -66,7 +76,7 @@ or or if you use yarn
 yarn build
 ```
 
-After run command above, it will build into a binary application which works for Linux, MacOS or Windows in `./release` folder
+After run command above, it will build into a binary application which works for Linux, MacOS or Windows excutable application on `./release` folder
 
 ## Description
 
