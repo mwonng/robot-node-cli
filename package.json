@@ -4,17 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "ava ./test/**.test.js --verbose"
+    "test": "ava ./test/**.test.js --verbose",
+    "build": "pkg ./index.js --out-path ./release"
+  },
+  "bin": {
+    "robot-cli": "./bin/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Michael Wang",
   "license": "ISC",
   "devDependencies": {
     "ava": "^1.4.1",
-    "eslint": "^5.16.0",
-    "sinon": "^7.3.1"
+    "eslint": "^5.16.0"
   },
   "dependencies": {
-    "commander": "^2.20.0"
+    "pkg": "^4.3.7"
   }
 }
