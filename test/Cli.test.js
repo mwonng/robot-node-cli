@@ -3,7 +3,6 @@ const CliHelper = require('../src/helpers/Cli');
 const SimulatorHelper = require('../src/helpers/Simulator');
 const TableHelper = require('../src/helpers/Table');
 
-
 test.before( t => {
     t.context.cli = new CliHelper();
     t.context.simulator = new SimulatorHelper(new TableHelper());

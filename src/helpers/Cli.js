@@ -1,6 +1,6 @@
 const Command = require('./Command');
 const fs = require('fs');
-const error = require('../func/error');
+
 class Cli {
     constructor() {
         this.commands = [];

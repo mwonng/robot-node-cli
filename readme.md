@@ -5,6 +5,12 @@ See detail descrpition [here](#description).
 ## Requirement
 This repo are using Node.js with NPM/Yarn as package manager. Please refer link below for installation.
 
+```bash
+$ node --version  # check node version
+```
+
+this project are develop and test on Node v10.13.0. if you meet any error and please check your node version, please keep node version >= v10.10.0
+
 - [Download Node.js ](https://nodejs.org/en/download/) (npm will installed within Node.js by default).
 
 ## Install Instruction
@@ -13,7 +19,7 @@ This repo are using Node.js with NPM/Yarn as package manager. Please refer link 
 to start work with GitHub, you have to had Git installed. I assume you already have git installed, but if you don't know, you can check in terminal
 
 ```bash
-$ git --version
+$ git --version  # check git version
 ```
 if not installed, please redirec to [download Git](https://git-scm.com/downloads)
 
@@ -52,6 +58,8 @@ or
 $ ./bin/index.js
 ```
 
+Note: If you get a 'Invalid regular expression error', please confirm your node's version again to keep it update or at least >= 10.10.0
+
 ### Test
 
 ```bash
@@ -67,13 +75,13 @@ $ yarn test
 ### Build a excutable application
 
 ```bash
-npm run build
+$ npm run build
 ```
 
 or or if you use yarn
 
 ```bash
-yarn build
+$ yarn build
 ```
 
 After run command above, it will build into a binary application which works for Linux, MacOS or Windows excutable application on `./release` folder
