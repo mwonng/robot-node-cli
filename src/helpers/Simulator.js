@@ -53,7 +53,7 @@ class Simulator {
     }
 
     invalid(command) {
-        error(`${command} is an invalid command`, false);
+        return error(`${command} is an invalid command`, false);
     }
 
 }

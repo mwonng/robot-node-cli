@@ -17,11 +17,7 @@ class Cli {
 
     run(commands, simulator) {
         commands.forEach(command =>{
-            try {
-                Command.run(command, simulator);
-            } catch (err) {
-                error(error);
-            }
+            Command.run(command, simulator);
         });
     }
 }

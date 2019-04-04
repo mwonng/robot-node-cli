@@ -26,3 +26,5 @@ yarn-error.log*
 /.vscode
 
 /release
+
+/.nyc_output

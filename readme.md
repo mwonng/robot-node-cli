@@ -78,6 +78,8 @@ yarn build
 
 After run command above, it will build into a binary application which works for Linux, MacOS or Windows excutable application on `./release` folder
 
+---
+
 ## Description
 
 * The application is a simulation of a toy robot moving on a square tabletop, of dimensions 5 units x 5 units.
