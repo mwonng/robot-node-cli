@@ -31,7 +31,7 @@ class Robot {
             case 'WEST':
                 this.moveWest();
                 break;
-            }
+        }
     }
 
     moveNext() {

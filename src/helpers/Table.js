@@ -5,7 +5,12 @@ class Table {
     }
 
     validLocation(rowIndex, colIndex) {
-        return rowIndex >= 0 && rowIndex < this.row && colIndex >= 0 && colIndex < this.col;
+        return (
+            rowIndex >= 0 &&
+            rowIndex < this.row &&
+            colIndex >= 0 &&
+            colIndex < this.col
+        );
     }
 
 }

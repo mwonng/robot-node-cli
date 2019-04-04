@@ -23,9 +23,8 @@ class Simulator {
     move() {
         if (
             this.isPlaced &&
-            this.table.validLocation(this.robot.moveNext(this.current)[0],this.robot.moveNext(this.current)[1])
-        )
-        {
+            this.table.validLocation(...this.robot.moveNext(this.current))
+        ) {
             this.robot.move(this.current);
             this.current = this.robot.getLocation();
         }

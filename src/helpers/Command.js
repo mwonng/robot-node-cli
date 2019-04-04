@@ -2,7 +2,7 @@ class Command {
     static run(command, simulator) {
         switch (true) {
             case /^PLACE (?<x>\d+),(?<y>\d+),(?<direction>\w+)$/.test(command): {
-                let {x, y, direction} = /^PLACE (?<x>\d+),(?<y>\d+),(?<direction>\w+)$/gi.exec(command).groups;
+                let { x, y, direction } = /^PLACE (?<x>\d+),(?<y>\d+),(?<direction>\w+)$/gi.exec(command).groups;
                 simulator.place(x, y, direction);
                 break;
             }
