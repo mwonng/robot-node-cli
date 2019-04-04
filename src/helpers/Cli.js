@@ -1,6 +1,6 @@
 const Command = require('./Command');
-var fs = require('fs');
-
+const fs = require('fs');
+const error = require('../func/error');
 class Cli {
     constructor() {
         this.commands = [];
@@ -11,9 +11,17 @@ class Cli {
         this.commands = array;
     }
 
+    getLoadedCommands() {
+        return this.commands;
+    }
+
     run(commands, simulator) {
         commands.forEach(command =>{
-            Command.run(command, simulator);
+            try {
+                Command.run(command, simulator);
+            } catch (err) {
+                error(error);
+            }
         });
     }
 }

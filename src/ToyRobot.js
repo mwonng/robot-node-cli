@@ -4,18 +4,15 @@ const CliHelper = require('./helpers/Cli');
 const config =require('../config');
 
 class ToyRobot {
-    constructor() {
-        this.board = new TableHelper(5, 5);
+    constructor(x = 5, y = 5) {
+        this.board = new TableHelper(x, y);
     }
 
     start() {
         const simulator = new SimulatorHelper(this.board);
         const Cli = new CliHelper();
-
         Cli.loadCommands(config.commands);
-
-        Cli.run(Cli.commands, simulator);
-
+        Cli.run(Cli.getLoadedCommands(), simulator);
     }
 }
 

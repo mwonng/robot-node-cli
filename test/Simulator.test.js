@@ -2,76 +2,111 @@ const test = require('ava');
 const TableHelper = require('../src/helpers/Table');
 const SimulatorHelper = require('../src/helpers/Simulator');
 
+test.beforeEach(t => {
+    let table = new TableHelper();
+    t.context.simulator = new SimulatorHelper(table);
+});
 
 test('place() should be place when position is valid', t => {
-    let table = new TableHelper();
-    let Simulator = new SimulatorHelper(table);
-
-    Simulator.place(3,2, 'NORTH');
+    t.context.simulator.place(3,2, 'NORTH');
     let expect = {x:3, y:2, facing: 'NORTH'};
-    t.deepEqual(Simulator.current, expect);
+    t.deepEqual(t.context.simulator.current, expect);
 });
 
 test('place() should NOT be placed when position is invalid', t => {
-    let table = new TableHelper();
-    let Simulator = new SimulatorHelper(table);
-
-    Simulator.place(5,7, 'NORTH');
-
-    t.deepEqual(Simulator.current, {});
+    t.context.simulator.place(5,7, 'NORTH');
+    t.deepEqual(t.context.simulator.current, {});
 });
 
 test('isPlaced() is FALSE if nothing command called', t => {
-    let table = new TableHelper();
-    let Simulator = new SimulatorHelper(table);
-    t.is(Simulator.isPlaced, false);
+    t.is(t.context.simulator.isPlaced, false);
 });
 
 test('isPlaced() is FALSE if some command rather than place()', t => {
-    let table = new TableHelper();
-    let Simulator = new SimulatorHelper(table);
-    Simulator.move();
-    Simulator.turnLeft();
-    t.is(Simulator.isPlaced, false);
+    t.context.simulator.move();
+    t.context.simulator.turnLeft();
+    t.is(t.context.simulator.isPlaced, false);
 });
 
 test('isPlaced() is TRUE if valid place() called', t => {
-    let table = new TableHelper();
-    let Simulator = new SimulatorHelper(table);
-    Simulator.place(1,1,'NORTH');
-    Simulator.turnLeft();
-    t.is(Simulator.isPlaced, true);
+    t.context.simulator.place(1,1,'NORTH');
+    t.context.simulator.turnLeft();
+    t.is(t.context.simulator.isPlaced, true);
 });
 
 test('isPlaced() is FALSE if invalid place() called', t => {
-    let table = new TableHelper();
-    let Simulator = new SimulatorHelper(table);
-    Simulator.place(6,9, 'WEST');
-    Simulator.turnLeft();
-    t.is(Simulator.isPlaced, false);
+    t.context.simulator.place(6,9, 'WEST');
+    t.context.simulator.turnLeft();
+    t.is(t.context.simulator.isPlaced, false);
 });
 
-test('move()', t => {
-
-    t.pass();
+test('invalid move() facing WEST with  should be ignore', t => {
+    t.context.simulator.place(0,0, 'WEST');
+    t.context.simulator.move();
+    let expect = {x:0, y:0, facing: 'WEST'};
+    t.deepEqual(t.context.simulator.current, expect);
 });
+
+test('invalid move() facing SOUTH should be ignore', t => {
+    t.context.simulator.place(1,0, 'SOUTH');
+    t.context.simulator.move();
+    let expect = {x:1, y:0, facing: 'SOUTH'};
+    t.deepEqual(t.context.simulator.current, expect);
+});
+
+test('invalid move() facing EAST should be ignore', t => {
+    t.context.simulator.place(4,0, 'EAST');
+    t.context.simulator.move();
+    let expect = {x:4, y:0, facing: 'EAST'};
+    t.deepEqual(t.context.simulator.current, expect);
+});
+
+test('invalid move() facing NORTH should be ignore', t => {
+    t.context.simulator.place(1,4, 'NORTH');
+    t.context.simulator.move();
+    let expect = {x:1, y:4, facing: 'NORTH'};
+    t.deepEqual(t.context.simulator.current, expect);
+});
+
+test('valid move() facing EAST should be works', t => {
+    t.context.simulator.place(0,0, 'EAST');
+    t.context.simulator.move();
+    let expect = {x:1, y:0, facing: 'EAST'};
+    t.deepEqual(t.context.simulator.current, expect);
+});
+
+test('valid move() facing WEST should be works', t => {
+    t.context.simulator.place(1,0, 'WEST');
+    t.context.simulator.move();
+    let expect = {x:0, y:0, facing: 'WEST'};
+    t.deepEqual(t.context.simulator.current, expect);
+});
+
+test('valid move() facing NORTH should be works', t => {
+    t.context.simulator.place(1,0, 'NORTH');
+    t.context.simulator.move();
+    let expect = {x:1, y:1, facing: 'NORTH'};
+    t.deepEqual(t.context.simulator.current, expect);
+});
+
+test('valid move() facing SOUTH should be works', t => {
+    t.context.simulator.place(1,1, 'SOUTH');
+    t.context.simulator.move();
+    let expect = {x:1, y:0, facing: 'SOUTH'};
+    t.deepEqual(t.context.simulator.current, expect);
+});
+
 
 test('turnLeft()', t => {
-
-    t.pass();
+    t.context.simulator.place(1,1, 'SOUTH');
+    t.context.simulator.turnLeft();
+    let expect = {x:1, y:1, facing: 'EAST'};
+    t.deepEqual(t.context.simulator.current, expect);
 });
 
 test('turnRight()', t => {
-
-    t.pass();
-});
-
-test('report()', t => {
-
-    t.pass();
-});
-
-test('invalid()', t => {
-
-    t.pass();
+    t.context.simulator.place(1,1, 'SOUTH');
+    t.context.simulator.turnRight();
+    let expect = {x:1, y:1, facing: 'WEST'};
+    t.deepEqual(t.context.simulator.current, expect);
 });

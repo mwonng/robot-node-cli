@@ -1,10 +1,12 @@
-// const Table = require('./Table');
-// const Robot = require('./Robot');
 const func = require('../func/func');
+const error = require('../func/error');
+const RobotHelp = require('../helpers/Robot');
+
 class Simulator {
     constructor(table) {
         this.table = table;
         this.isPlaced = false;
+        this.robot = new RobotHelp();
         this.current = {};
     }
 
@@ -13,74 +15,46 @@ class Simulator {
         y = parseInt(y, 10);
         if (this.table.validLocation(x, y)) {
             this.isPlaced = true;
-            this.current = {
-                x : x,
-                y : y,
-                facing : direction
-            };
+            this.robot.place(x, y, direction);
+            this.current = this.robot.getLocation();
         }
     }
 
     move() {
-        if (this.isPlaced) {
-            switch (this.current.facing) {
-                case 'NORTH':
-                    this.moveNorth();
-                    break;
-                case 'SOUTH':
-                    this.moveSouth();
-                    break;
-                case 'EAST':
-                    this.moveEast();
-                    break;
-                case 'WEST':
-                    this.moveWest();
-                    break;
-                default:
-                    this.invalid();
-            }
+        if (
+            this.isPlaced &&
+            this.table.validLocation(this.robot.moveNext(this.current)[0],this.robot.moveNext(this.current)[1])
+        )
+        {
+            this.robot.move(this.current);
+            this.current = this.robot.getLocation();
         }
-    }
-
-    moveNorth() {
-        this.table.validLocation(this.current.x, this.current.y + 1) ? this.current.y++ : null;
-    }
-
-    moveSouth() {
-        this.table.validLocation(this.current.x, this.current.y - 1) ? this.current.y++ : null;
-    }
-
-    moveEast() {
-        this.table.validLocation(this.current.x + 1, this.current.y) ? this.current.x++ : null;
-    }
-
-    moveWest() {
-        this.table.validLocation(this.current.x - 1, this.current.y) ? this.current.x++ : null;
     }
 
     turnLeft() {
         if (this.isPlaced) {
-            let new_direction = func.turnDirection(this.current.facing, "LEFT");
-            this.current.facing = new_direction;
+            this.robot.turnLeft();
+            this.current = this.robot.getLocation();
         }
     }
 
     turnRight() {
         if (this.isPlaced) {
-            let new_direction = func.turnDirection(this.current.facing, "RIGHT");
-            this.current.facing = new_direction;
+            this.robot.turnRight();
+            this.current = this.robot.getLocation();
         }
     }
 
     report() {
         if (this.isPlaced) {
-            func.output(`${this.current.x},${this.current.y},${this.current.facing}`);
-            return(`${this.current.x},${this.current.y},${this.current.facing}`);
+            let current = this.robot.getLocation();
+            func.output(`${current.x},${current.y},${current.facing}`);
+            return(`${current.x},${current.y},${current.facing}`);
         }
     }
 
-    invalid() {
-        console.log("invalid command");
+    invalid(command) {
+        error(`${command} is an invalid command`, false);
     }
 
 }

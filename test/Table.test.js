@@ -8,9 +8,3 @@ test('validLocation()', t => {
     t.is(Table.validLocation(5, 0), false);
     t.is(Table.validLocation(5, 8), false);
 });
-
-
-test('test()', t => {
-
-    t.pass();
-});

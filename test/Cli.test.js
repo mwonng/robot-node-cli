@@ -11,10 +11,4 @@ test('loadCommands()', t => {
         'REPORT'
     ];
     t.deepEqual(cli.commands, expect);
-    // t.pass();
-});
-
-test('run()', t => {
-
-    t.pass();
 });
