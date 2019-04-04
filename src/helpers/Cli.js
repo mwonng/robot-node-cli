@@ -1,13 +1,19 @@
+const Command = require('./Command');
+var fs = require('fs');
 
 class Cli {
+    constructor() {
+        this.commands = [];
+    }
 
-    loadCommands() {
-        var lineReader = require('readline').createInterface({
-            input: require('fs').createReadStream('./commands.txt')
-        });
+    loadCommands(filePath) {
+        var array = fs.readFileSync(filePath).toString().split("\n");
+        this.commands = array;
+    }
 
-        lineReader.on('line', function (line) {
-            console.log('Got command:', line);
+    run(commands, simulator) {
+        commands.forEach(command =>{
+            Command.run(command, simulator);
         });
     }
 }
