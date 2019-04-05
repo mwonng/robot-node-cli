@@ -12,8 +12,7 @@ class ToyRobot {
     start() {
         const robot = new Robot(this.board);
         const cli = new Cli();
-        let result = cli.run(cli.loadCommands(config.commands), robot);
-        output(result);
+        cli.run(cli.loadCommands(config.commands), robot);
     }
 }
 

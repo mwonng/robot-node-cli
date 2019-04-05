@@ -43,8 +43,7 @@ class Robot {
 
     report() {
         if (this.isPlaced) {
-            func.output(`${this.current[0]},${this.current[1]},${this.facing}`);
-            return(`${this.current[0]},${this.current[1]},${this.facing}`);
+            func.output(`ROBOT locate at: ${this.current[0]},${this.current[1]},${this.facing}`);
         }
     }
 
