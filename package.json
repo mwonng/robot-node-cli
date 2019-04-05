@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "ava ./test/**.test.js --verbose",
+    "test": "ava ./test/**/*.test.js ./test/*.test.js --verbose",
     "coverage": "nyc ava",
     "build": "pkg ./bin/index.js --out-path ./release"
   },

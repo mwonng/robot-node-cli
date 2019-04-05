@@ -1,4 +1,4 @@
-const func = require('../func/func');
+const func = require('../utils/func');
 
 class Robot {
     constructor(table) {

@@ -1,5 +1,5 @@
 const test = require('ava');
-const func = require('../src/func/func');
+const func = require('../../src/utils/func');
 const sinon = require('sinon');
 
 test('error() should works', t => {
@@ -20,9 +20,3 @@ test('keepInRange() works', t => {
     t.is(func.keepInRange(7, 0, 5), 5);
     t.is(func.keepInRange(-1, 0, 5), 0);
 });
-
-
-
-
-
-

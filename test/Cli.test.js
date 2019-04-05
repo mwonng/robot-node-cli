@@ -1,34 +1,51 @@
 const test = require('ava');
-const CliHelper = require('../src/helpers/Cli');
+const Cli = require('../src/helpers/Cli');
 const Robot = require('../src/helpers/Robot');
-const TableHelper = require('../src/helpers/Table');
+const Table = require('../src/helpers/Table');
+const sinon = require('sinon');
 
 test.before( t => {
-    t.context.cli = new CliHelper();
-    t.context.rebot = new Robot(new TableHelper());
+    t.context.cli = new Cli();
+    t.context.rebot = new Robot(new Table());
 });
 
 test('loadCommands()', t => {
-    t.context.cli.loadCommands('./test/test_commands/test1.txt');
+    let result = t.context.cli.loadCommands('./test/test_commands/test1.txt');
     let expect = [
         'PLACE 0,0,NORTH',
         'MOVE',
         'REPORT'
     ];
-    t.deepEqual(t.context.cli.commands, expect);
+    t.deepEqual(result, expect);
 });
 
-test('getLoadedCommands()', t => {
-    t.context.cli.loadCommands('./test/test_commands/test1.txt');
-    let expect = [
+test('run() test case 1', t => {
+    let commands = [
         'PLACE 0,0,NORTH',
         'MOVE',
         'REPORT'
     ];
-    t.deepEqual(t.context.cli.getLoadedCommands(), expect);
+    console.log = sinon.spy();
+    t.context.cli.run(commands, t.context.rebot);
+    t.deepEqual(t.context.rebot.current, [0, 1]);
+    t.is(t.context.rebot.facing, 'NORTH');
+    t.true(console.log.called);
 });
 
-test('run()', t => {
+test('run() test case 2', t => {
+    let commands = [
+        'PLACE 0,0,NORTH',
+        'LEFT',
+        'REPORT'
+    ];
+    console.log = sinon.spy();
+    t.context.cli.run(commands, t.context.rebot);
+    t.deepEqual(t.context.rebot.current, [0, 0]);
+    t.is(t.context.rebot.facing, 'WEST');
+    t.true(console.log.called);
+});
+
+test('run() test case 3', t => {
     let commands = [
         'PLACE 1,2,EAST',
         'MOVE',
@@ -37,8 +54,9 @@ test('run()', t => {
         'MOVE',
         'REPORT'
     ];
+    console.log = sinon.spy();
     t.context.cli.run(commands, t.context.rebot);
-
     t.deepEqual(t.context.rebot.current, [3, 3]);
     t.is(t.context.rebot.facing, 'NORTH');
+    t.true(console.log.called);
 });

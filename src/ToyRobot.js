@@ -1,18 +1,19 @@
 const Robot = require('./helpers/Robot');
-const TableHelper = require('./helpers/Table');
+const Table = require('./helpers/Table');
 const Cli = require('./helpers/Cli');
+const output = require('./utils/func').output;
 const config =require('../config');
 
 class ToyRobot {
     constructor(x = 5, y = 5) {
-        this.board = new TableHelper(x, y);
+        this.board = new Table(x, y);
     }
 
     start() {
         const robot = new Robot(this.board);
         const cli = new Cli();
-        cli.loadCommands(config.commands);
-        cli.run(cli.getLoadedCommands(), robot);
+        let result = cli.run(cli.loadCommands(config.commands), robot);
+        output(result);
     }
 }
 

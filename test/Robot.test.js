@@ -8,7 +8,7 @@ test.beforeEach(t => {
     t.context.robot = new Robot(table);
 });
 
-test('place() should be place when position is valid', t => {
+test('place() should be placed when position is valid', t => {
     t.context.robot.place(3,2, 'NORTH');
 
     t.deepEqual(t.context.robot.current, [3, 2]);
@@ -30,17 +30,25 @@ test('isPlaced() is FALSE if some command rather than place()', t => {
     t.context.robot.move();
     t.context.robot.turn('LEFT');
     t.is(t.context.robot.isPlaced, false);
+    t.context.robot.turn('RIGHT');
+    t.is(t.context.robot.isPlaced, false);
+    t.context.robot.turn('MOVE');
+    t.is(t.context.robot.isPlaced, false);
 });
 
 test('isPlaced() is TRUE if valid place() called', t => {
     t.context.robot.place(1,1,'NORTH');
     t.context.robot.turn('LEFT');
+
+    t.deepEqual(t.context.robot.current, [1, 1]);
     t.is(t.context.robot.isPlaced, true);
 });
 
 test('isPlaced() is FALSE if invalid place() called', t => {
     t.context.robot.place(6,9, 'WEST');
     t.context.robot.turn('LEFT');
+
+    t.deepEqual(t.context.robot.current, []);
     t.is(t.context.robot.isPlaced, false);
 });
 
