@@ -2,20 +2,6 @@ const test = require('ava');
 const func = require('../src/func/func');
 const sinon = require('sinon');
 
-// test('turnDirection() LEFT should works', t => {
-//     const current_direction = 'EAST';
-//     let turn_to = 'LEFT';
-//     let expect = 'NORTH';
-//     t.is(func.turnDirection(current_direction, turn_to), expect);
-// });
-
-// test('turnDirection() RIGHT should works', t => {
-//     const current_direction = 'EAST';
-//     let turn_to = 'RIGHT';
-//     let expect = 'SOUTH';
-//     t.is(func.turnDirection(current_direction, turn_to), expect);
-// });
-
 test('error() should works', t => {
     console.error = sinon.spy();
     func.error('command');

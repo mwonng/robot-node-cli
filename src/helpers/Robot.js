@@ -1,6 +1,6 @@
 const func = require('../func/func');
 
-class Simulator {
+class Robot {
     constructor(table) {
         this.table = table;
         this.isPlaced = false;
@@ -54,4 +54,4 @@ class Simulator {
 
 }
 
-module.exports = Simulator;
+module.exports = Robot;

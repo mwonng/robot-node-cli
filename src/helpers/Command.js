@@ -1,28 +1,27 @@
 class Command {
-    static run(command, simulator) {
+    static run(command, robot) {
         switch (true) {
             case /^PLACE (?<x>\d+),(?<y>\d+),(?<direction>\w+)$/gi.test(command) : {
                 let { x, y, direction } = /^PLACE (?<x>\d+),(?<y>\d+),(?<direction>\w+)$/gi.exec(command).groups;
-                simulator.place(x, y, direction);
+                robot.place(x, y, direction);
                 break;
             }
             case /^MOVE$/gi.test(command) :
-                simulator.move();
+                robot.move();
                 break;
             case /^LEFT$/gi.test(command) :
-                simulator.turn(command);
+                robot.turn(command);
                 break;
             case /^RIGHT$/gi.test(command) :
-                simulator.turn(command);
+                robot.turn(command);
                 break;
             case /^REPORT$/gi.test(command) :
-                simulator.report();
+                robot.report();
                 break;
             default:
-                simulator.invalid(command) ;
+                robot.invalid(command) ;
         }
     }
 }
-
 
 module.exports = Command;

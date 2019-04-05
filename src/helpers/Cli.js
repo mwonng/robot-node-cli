@@ -15,9 +15,9 @@ class Cli {
         return this.commands;
     }
 
-    run(commands, simulator) {
+    run(commands, rebot) {
         commands.forEach(command =>{
-            Command.run(command, simulator);
+            Command.run(command, rebot);
         });
     }
 }

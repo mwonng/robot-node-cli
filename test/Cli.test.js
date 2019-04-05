@@ -1,11 +1,11 @@
 const test = require('ava');
 const CliHelper = require('../src/helpers/Cli');
-const SimulatorHelper = require('../src/helpers/Simulator');
+const Robot = require('../src/helpers/Robot');
 const TableHelper = require('../src/helpers/Table');
 
 test.before( t => {
     t.context.cli = new CliHelper();
-    t.context.simulator = new SimulatorHelper(new TableHelper());
+    t.context.rebot = new Robot(new TableHelper());
 });
 
 test('loadCommands()', t => {
@@ -37,8 +37,8 @@ test('run()', t => {
         'MOVE',
         'REPORT'
     ];
-    t.context.cli.run(commands, t.context.simulator);
+    t.context.cli.run(commands, t.context.rebot);
 
-    t.deepEqual(t.context.simulator.current, [3, 3]);
-    t.is(t.context.simulator.facing, 'NORTH');
+    t.deepEqual(t.context.rebot.current, [3, 3]);
+    t.is(t.context.rebot.facing, 'NORTH');
 });

@@ -1,6 +1,6 @@
-const SimulatorHelper = require('./helpers/Simulator');
+const Robot = require('./helpers/Robot');
 const TableHelper = require('./helpers/Table');
-const CliHelper = require('./helpers/Cli');
+const Cli = require('./helpers/Cli');
 const config =require('../config');
 
 class ToyRobot {
@@ -9,10 +9,10 @@ class ToyRobot {
     }
 
     start() {
-        const simulator = new SimulatorHelper(this.board);
-        const Cli = new CliHelper();
-        Cli.loadCommands(config.commands);
-        Cli.run(Cli.getLoadedCommands(), simulator);
+        const robot = new Robot(this.board);
+        const cli = new Cli();
+        cli.loadCommands(config.commands);
+        cli.run(cli.getLoadedCommands(), robot);
     }
 }
 
