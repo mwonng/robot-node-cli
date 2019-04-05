@@ -4,8 +4,13 @@ class Robot {
     constructor(table) {
         this.table = table;
         this.isPlaced = false;
-        this.directions = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
-        this.vectorSteps = [[0,1],[1,0],[0,-1],[-1,0]];
+        this.vectorSteps = {
+            'NORTH' : [0,1],
+            'EAST'  : [1,0],
+            'SOUTH' : [0,-1],
+            'WEST'  : [-1,0]
+        };
+        this.directions = Object.keys(this.vectorSteps);
         this.current = [];
     }
 
@@ -21,9 +26,8 @@ class Robot {
 
     move() {
         if (this.isPlaced) {
-            let index = this.directions.indexOf(this.facing);
-            this.current[0] += this.vectorSteps[index][0];
-            this.current[1] += this.vectorSteps[index][1];
+            this.current[0] += this.vectorSteps[this.facing][0];
+            this.current[1] += this.vectorSteps[this.facing][1];
             this.current[0] = func.keepInRange(0, this.current[0], this.table.row - 1);
             this.current[1] = func.keepInRange(0, this.current[1], this.table.col - 1);
         }
