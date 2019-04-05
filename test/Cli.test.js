@@ -38,6 +38,7 @@ test('run()', t => {
         'REPORT'
     ];
     t.context.cli.run(commands, t.context.simulator);
-    let expect = {x:3, y:3, facing: 'NORTH'};
-    t.deepEqual(t.context.simulator.current, expect);
+
+    t.deepEqual(t.context.simulator.current, [3, 3]);
+    t.is(t.context.simulator.facing, 'NORTH');
 });

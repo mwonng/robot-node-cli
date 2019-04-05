@@ -1,27 +1,17 @@
 const func = {
-    arrayRotateLeft: (arr) => {
-        let first = arr.shift();
-        return [...arr, first];
-    },
-
-    arrayRotateRight: (arr) => {
-        let last = arr.pop();
-        return [last,...arr];
-    },
-
-    turnDirection: (current_direction, turn_to) => {
-        let directions = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
-        let current_index = directions.indexOf(current_direction);
-
-        if (turn_to === "LEFT") {
-            return func.arrayRotateRight([...directions])[current_index];
-        } else {
-            return func.arrayRotateLeft([...directions])[current_index];
-        }
-    },
-
     output: (message) => {
         console.log(message);
+    },
+
+    error: (message, exit) => {
+        console.error(`Error: ${message}`);
+        exit && process.exit(1);
+    },
+
+    keepInRange: (x, min, max) =>{
+        x = Math.max(min, x);
+        x = Math.min(max, x);
+        return x;
     }
 };
 

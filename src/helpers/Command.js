@@ -10,10 +10,10 @@ class Command {
                 simulator.move();
                 break;
             case /^LEFT$/gi.test(command) :
-                simulator.turnLeft();
+                simulator.turn(command);
                 break;
             case /^RIGHT$/gi.test(command) :
-                simulator.turnRight();
+                simulator.turn(command);
                 break;
             case /^REPORT$/gi.test(command) :
                 simulator.report();

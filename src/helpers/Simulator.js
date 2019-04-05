@@ -1,13 +1,12 @@
 const func = require('../func/func');
-const error = require('../func/error');
-const RobotHelp = require('../helpers/Robot');
 
 class Simulator {
     constructor(table) {
         this.table = table;
         this.isPlaced = false;
-        this.robot = new RobotHelp();
-        this.current = {};
+        this.directions = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
+        this.vectorSteps = [[0,1],[1,0],[0,-1],[-1,0]];
+        this.current = [];
     }
 
     place(x, y, direction) {
@@ -15,45 +14,42 @@ class Simulator {
         y = parseInt(y, 10);
         if (this.table.validLocation(x, y)) {
             this.isPlaced = true;
-            this.robot.place(x, y, direction);
-            this.current = this.robot.getLocation();
+            this.current = [x, y];
+            this.facing = direction;
         }
     }
 
     move() {
-        if (
-            this.isPlaced &&
-            this.table.validLocation(...this.robot.moveNext(this.current))
-        ) {
-            this.robot.move(this.current);
-            this.current = this.robot.getLocation();
+        if (this.isPlaced) {
+            let index = this.directions.indexOf(this.facing);
+            this.current[0] += this.vectorSteps[index][0];
+            this.current[1] += this.vectorSteps[index][1];
+            this.current[0] = func.keepInRange(0, this.current[0], this.table.row - 1);
+            this.current[1] = func.keepInRange(0, this.current[1], this.table.col - 1);
         }
     }
 
-    turnLeft() {
+    turn(command) {
         if (this.isPlaced) {
-            this.robot.turnLeft();
-            this.current = this.robot.getLocation();
-        }
-    }
-
-    turnRight() {
-        if (this.isPlaced) {
-            this.robot.turnRight();
-            this.current = this.robot.getLocation();
+            let directions = this.directions;
+            let current_index = directions.indexOf(this.facing);
+            if (command === "LEFT") {
+                this.facing = directions[(directions.length - 1 + current_index) % directions.length];
+            } else {
+                this.facing = directions[(directions.length + 1 + current_index) % directions.length] ;
+            }
         }
     }
 
     report() {
         if (this.isPlaced) {
-            let current = this.robot.getLocation();
-            func.output(`${current.x},${current.y},${current.facing}`);
-            return(`${current.x},${current.y},${current.facing}`);
+            func.output(`${this.current[0]},${this.current[1]},${this.facing}`);
+            return(`${this.current[0]},${this.current[1]},${this.facing}`);
         }
     }
 
     invalid(command) {
-        return error(`${command} is an invalid command`, false);
+        return func.error(`${command} is an invalid command`, false);
     }
 
 }
