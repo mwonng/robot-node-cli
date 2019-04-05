@@ -1,7 +1,6 @@
-const Robot = require('./helpers/Robot');
-const Table = require('./helpers/Table');
-const Cli = require('./helpers/Cli');
-const output = require('./utils/func').output;
+const Robot = require('./lib/Robot');
+const Table = require('./lib/Table');
+const Cli = require('./lib/Cli');
 const config =require('../config');
 
 class ToyRobot {

@@ -1,7 +1,7 @@
 const test = require('ava');
-const Cli = require('../src/helpers/Cli');
-const Robot = require('../src/helpers/Robot');
-const Table = require('../src/helpers/Table');
+const Cli = require('../src/lib/Cli');
+const Robot = require('../src/lib/Robot');
+const Table = require('../src/lib/Table');
 const sinon = require('sinon');
 
 test.before( t => {

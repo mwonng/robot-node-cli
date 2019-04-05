@@ -1,5 +1,5 @@
 const test = require('ava');
-const TableService = require('../../src/helpers/Table');
+const TableService = require('../../src/lib/Table');
 
 test.before( t=>{
     t.context.table = new TableService(5,5);

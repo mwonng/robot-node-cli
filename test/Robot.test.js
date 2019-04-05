@@ -1,6 +1,6 @@
 const test = require('ava');
-const TableHelper = require('../src/helpers/Table');
-const Robot = require('../src/helpers/Robot');
+const TableHelper = require('../src/lib/Table');
+const Robot = require('../src/lib/Robot');
 const sinon = require('sinon');
 
 test.beforeEach(t => {

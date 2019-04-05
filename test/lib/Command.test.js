@@ -1,11 +1,11 @@
 const test = require('ava');
-const Robot = require('../../src/helpers/Robot');
-const Command = require('../../src/helpers/Command');
-const TableHelper = require('../../src/helpers/Table');
+const Robot = require('../../src/lib/Robot');
+const Command = require('../../src/lib/Command');
+const Table = require('../../src/lib/Table');
 const sinon = require('sinon');
 
 test.beforeEach(t => {
-    let table = new TableHelper();
+    let table = new Table();
     t.context.rebot = new Robot(table);
 });
 

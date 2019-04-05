@@ -2,7 +2,7 @@
 
 See detail descrpition [here](#description).
 
-## Requirement
+# Requirement
 This repo are using Node.js with NPM/Yarn as package manager. Please refer link below for installation.
 
 ```bash
@@ -13,9 +13,9 @@ this project are develop and test on Node v10.13.0. if you meet any error and pl
 
 - [Download Node.js ](https://nodejs.org/en/download/) (npm will installed within Node.js by default).
 
-## Install Instruction
+# Install Instruction
 
-### Clone repo
+## Clone repo
 to start work with GitHub, you have to had Git installed. I assume you already have git installed, but if you don't know, you can check in terminal
 
 ```bash
@@ -28,7 +28,7 @@ $ git clone https://github.com/mwonng/robot-node-cli.git
 $ cd robot-node-cli
 ```
 
-### Install dependencies
+## Install dependencies
 
 Install dependencies via package manager.
 
@@ -42,11 +42,11 @@ or if you using Yarn.
 $ yarn
 ```
 
-### Customize your own commands
+## Customize your own commands
 
 you can change command in file `./commands.txt` to customize your commands.
 
-### Run this application
+## Run this application
 
 ```bash
 $ node ./bin/index.js
@@ -58,9 +58,9 @@ or
 $ ./bin/index.js
 ```
 
-Note: If you get a 'Invalid regular expression error', please confirm your node's version again to keep it update or at least >= 10.10.0
+_Note: If you get a 'Invalid regular expression error', please confirm your node's version again to keep it update or at least >= 10.10.0_
 
-### Test
+## Test
 
 ```bash
 $ npm run test
@@ -72,7 +72,7 @@ or or if you using Yarn
 $ yarn test
 ```
 
-### Build a excutable application
+## Build a excutable application
 
 ```bash
 $ npm run build
