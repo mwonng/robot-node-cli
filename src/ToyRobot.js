@@ -1,7 +1,7 @@
-const Robot = require('./lib/Robot');
-const Table = require('./lib/Table');
-const Cli = require('./lib/Cli');
-const config =require('../config');
+const Robot  = require('./lib/Robot');
+const Table  = require('./lib/Table');
+const Cli    = require('./lib/Cli');
+const config = require('../config');
 
 class ToyRobot {
     constructor(x = 5, y = 5) {
@@ -10,7 +10,7 @@ class ToyRobot {
 
     start() {
         const robot = new Robot(this.board);
-        const cli = new Cli();
+        const cli   = new Cli();
         cli.run(cli.loadCommands(config.commands), robot);
     }
 }

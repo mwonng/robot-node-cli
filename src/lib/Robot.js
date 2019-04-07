@@ -2,7 +2,7 @@ const func = require('../utils/func');
 
 class Robot {
     constructor(table) {
-        this.table = table;
+        this.table    = table;
         this.isPlaced = false;
         this.vectorSteps = {
             'NORTH' : [0,1],
@@ -19,8 +19,8 @@ class Robot {
         y = parseInt(y, 10);
         if (this.table.validLocation(x, y)) {
             this.isPlaced = true;
-            this.current = [x, y];
-            this.facing = direction;
+            this.current  = [x, y];
+            this.facing   = direction;
         }
     }
 
@@ -28,14 +28,14 @@ class Robot {
         if (this.isPlaced) {
             this.current[0] += this.vectorSteps[this.facing][0];
             this.current[1] += this.vectorSteps[this.facing][1];
-            this.current[0] = func.keepInRange(0, this.current[0], this.table.row - 1);
-            this.current[1] = func.keepInRange(0, this.current[1], this.table.col - 1);
+            this.current[0]  = func.keepInRange(0, this.current[0], this.table.row - 1);
+            this.current[1]  = func.keepInRange(0, this.current[1], this.table.col - 1);
         }
     }
 
     turn(command) {
         if (this.isPlaced) {
-            let directions = this.directions;
+            let directions    = this.directions;
             let current_index = directions.indexOf(this.facing);
             if (command === "LEFT") {
                 this.facing = directions[(directions.length - 1 + current_index) % directions.length];
