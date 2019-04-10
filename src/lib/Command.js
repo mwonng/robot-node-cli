@@ -1,31 +1,45 @@
 const config = require('../../config');
+const func = require('../utils/func');
 class Command {
     constructor() {
         this.vectorSteps = config.vectorSteps;
         this.directions = config.directions;
     }
+}
 
-    turn(facing, turnTo) {
-        let directions = this.directions;
-        let current_index = directions.indexOf(facing);
-        if (turnTo === 'LEFT') {
-            facing = directions[(directions.length - 1 + current_index) % directions.length];
-        } else if ( turnTo === 'RIGHT') {
-            facing = directions[(directions.length + 1 + current_index) % directions.length];
-        }
-        return facing;
+class Turn extends Command {
+    constructor() {
+        super();
     }
 }
 
-class Left extends Command {
+class Right extends Turn {
     constructor() {
         super();
     }
 
     do(params, robot) {
-        let {current, facing} = robot;
-        let newFacing = this.turn(facing, 'LEFT');
-        robot.setPosition(current[0],current[1], newFacing);
+        let facing = robot.facing;
+
+        let directions = this.directions;
+        let current_index = directions.indexOf(facing);
+        facing = directions[(directions.length + 1 + current_index) % directions.length];
+        robot.setPosition(robot.getX(),robot.getY(), facing);
+    }
+}
+
+class Left extends Turn {
+    constructor() {
+        super();
+    }
+
+    do(params, robot) {
+        let facing = robot.facing;
+
+        let directions = this.directions;
+        let current_index = directions.indexOf(facing);
+        facing = directions[(directions.length - 1 + current_index) % directions.length];
+        robot.setPosition(robot.getX(),robot.getY(), facing);
     }
 }
 
@@ -37,8 +51,8 @@ class Move extends Command {
     do(params, robot) {
         if (robot.getIsPlaced() == true) {
             let facing = robot.facing;
-            let x = robot.current[0];
-            let y = robot.current[1];
+            let x = robot.getX();
+            let y = robot.getY();
             x += this.vectorSteps[facing][0];
             y += this.vectorSteps[facing][1];
             if (robot.table.validLocation(x, y)) {
@@ -56,15 +70,13 @@ class Place extends Command {
     do(params, robot) {
         let x = parseInt(params.x, 10);
         let y = parseInt(params.y, 10);
-        this.turn();
         if (robot.table.validLocation(x, y)) {
             robot.setPosition(x, y, params.direction);
             robot.setIsPlaced();
         } else {
-            console.log("Place a wrong position!");
+            func.error("Place a wrong location!");
         }
     }
-
 }
 
 class Report extends Command {
@@ -73,24 +85,13 @@ class Report extends Command {
     }
 
     do(params, robot) {
-        let {current, facing} = robot;
+        let facing = robot.facing;
         if (robot.getIsPlaced() == true) {
-            console.log(`ROBOT locate at: ${current[0]},${current[1]},${facing}`);
+            func.output(`ROBOT locate at: ${robot.getX()},${robot.getY()},${facing}`);
         }
     }
 }
 
-class Right extends Command {
-    constructor() {
-        super();
-    }
-
-    do(params, robot) {
-        let {current, facing} = robot;
-        let newFacing = this.turn(facing, 'RIGHT');
-        robot.setPosition(current[0],current[1], newFacing);
-    }
-}
 
 const actions = {
     left: Left,

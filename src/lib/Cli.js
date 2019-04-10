@@ -1,7 +1,7 @@
 // const Command = require('./Command');
 const fs = require('fs');
 const comm = require('./Command');
-
+const func = require('../utils/func');
 class Cli {
     loadCommands(filePath) {
         let array = fs.readFileSync(filePath).toString().split("\n");
@@ -24,7 +24,7 @@ class Cli {
             const run = new Action(robot);
             run.do(params, robot);
         } else {
-            console.error("error Action!");
+            func.error("Error command!");
         }
     }
 }

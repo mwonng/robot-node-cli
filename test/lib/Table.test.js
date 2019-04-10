@@ -34,3 +34,17 @@ test('validLocation() table vertical position is NOT in the table should be fals
     t.is(table.validLocation(0, -1), false);
     t.is(table.validLocation(0, 8), false);
 });
+
+test('getTableRow()', t => {
+    let table = t.context.table;
+
+    t.is(table.getTableRow(), 5);
+});
+
+
+
+test('getTableCol()', t => {
+    let table = t.context.table;
+
+    t.is(table.getTableCol(), 5);
+});
