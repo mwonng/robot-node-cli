@@ -10,6 +10,7 @@ test.beforeEach(t => {
 });
 
 test('run() valid command', async t => {
+
     Command.run('PLACE 1,1,NORTH', t.context.rebot);
 
     t.deepEqual(t.context.rebot.current, [1, 1]);

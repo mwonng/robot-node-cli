@@ -13,6 +13,13 @@ class Table {
         );
     }
 
+    getTableRow() {
+        return this.row;
+    }
+
+    getTableCol() {
+        return this.col;
+    }
 }
 
 module.exports = Table;

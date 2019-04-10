@@ -12,7 +12,28 @@ class Robot {
         };
         this.directions = Object.keys(this.vectorSteps);
         this.current = [];
-}
+    }
+
+    recevieCommandAndCheck(x, y, facing) {
+        if (this.table.validLocation(x, y)) {
+            this.setPosition(x, y, facing);
+            this.isPlaced = true;
+        } else {
+            this.invalid(`${x}, ${y}`);
+        }
+    }
+
+    setPosition(x, y, facing) {
+        this.current = [x, y];
+        this.facing = facing;
+    }
+
+    getIsPlaced() {
+        return this.isPlaced;
+    }
+    setIsPlaced() {
+        this.isPlaced = true;
+    }
 
     place(x, y, direction, command) {
         x = parseInt(x, 10);
