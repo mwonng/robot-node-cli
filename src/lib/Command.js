@@ -1,7 +1,8 @@
-const directions = require('../../config').directions;
+const config = require('../../config');
 class Command {
     constructor() {
-        this.directions = directions;
+        this.vectorSteps = config.vectorSteps;
+        this.directions = config.directions;
     }
 
     turn(facing, turnTo) {

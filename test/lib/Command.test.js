@@ -4,14 +4,21 @@ const Command = require('../../src/lib/Command');
 const Table = require('../../src/lib/Table');
 const sinon = require('sinon');
 
-test("command", t => {
-    t.pass();
+
+test.beforeEach(t => {
+    t.context.command = new Command();
 });
 
-// test.beforeEach(t => {
-//     let table = new Table();
-//     t.context.rebot = new Robot(table);
-// });
+
+test("command turn() LEFT", t => {
+    let command = t.context.command;
+    t.is(command.turn('NORTH', 'LEFT'), 'WEST');
+});
+
+test("command turn() RIGHT", t => {
+    let command = t.context.command;
+    t.is(command.turn('NORTH', 'RIGHT'), 'EAST');
+});
 
 // test('run() valid command', async t => {
 

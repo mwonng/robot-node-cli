@@ -1,6 +1,6 @@
 // const Command = require('./Command');
 const fs = require('fs');
-const action = require('./actions/index');
+const action = require('./Actions');
 
 class Cli {
     loadCommands(filePath) {

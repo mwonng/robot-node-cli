@@ -38,8 +38,8 @@ test('place() should NOT be placed when position is invalid', t => {
 });
 
 test('place() should be update when position is already call', t => {
+    console.error = sinon.spy();
     t.context.robot.place(5,7, 'NORTH');
-
     t.deepEqual(t.context.robot.current, []);
     t.is(t.context.robot.facing, undefined);
 });
@@ -67,6 +67,7 @@ test('isPlaced() is TRUE if valid place() called', t => {
 });
 
 test('isPlaced() is FALSE if invalid place() called', t => {
+    console.error = sinon.spy();
     t.context.robot.place(6,9, 'WEST');
     t.context.robot.turn('LEFT');
 
