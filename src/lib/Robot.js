@@ -1,5 +1,5 @@
 const func = require('../utils/func');
-
+const config = require('../../config');
 class Robot {
     constructor(table) {
         this.table    = table;
@@ -12,15 +12,17 @@ class Robot {
         };
         this.directions = Object.keys(this.vectorSteps);
         this.current = [];
-    }
+}
 
-    place(x, y, direction) {
+    place(x, y, direction, command) {
         x = parseInt(x, 10);
         y = parseInt(y, 10);
         if (this.table.validLocation(x, y)) {
             this.isPlaced = true;
             this.current  = [x, y];
             this.facing   = direction;
+        } else {
+            this.invalid(`${command} ${x}, ${y}`);
         }
     }
 
@@ -37,10 +39,13 @@ class Robot {
         if (this.isPlaced) {
             let directions    = this.directions;
             let current_index = directions.indexOf(this.facing);
-            if (command === "LEFT") {
-                this.facing = directions[(directions.length - 1 + current_index) % directions.length];
-            } else {
-                this.facing = directions[(directions.length + 1 + current_index) % directions.length] ;
+            switch (command) {
+                case config.LEFT :
+                    this.facing = directions[(directions.length - 1 + current_index) % directions.length];
+                    break;
+                case config.RIGHT :
+                    this.facing = directions[(directions.length + 1 + current_index) % directions.length];
+                    break;
             }
         }
     }
@@ -52,7 +57,7 @@ class Robot {
     }
 
     invalid(command) {
-        return func.error(`${command} is an invalid command`, false);
+        return func.error(`'${command}' is an invalid command`, false);
     }
 
 }
