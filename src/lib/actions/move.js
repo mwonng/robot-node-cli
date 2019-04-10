@@ -1,7 +1,11 @@
-// const Command = require('../Command');
+const Command = require('../Command');
 const vectorSteps = require('../../../config').vectorSteps;
 
-class Move {
+class Move extends Command {
+    constructor() {
+        super();
+    }
+
     do(params, robot) {
         if (robot.getIsPlaced() == true) {
             let facing = robot.facing;

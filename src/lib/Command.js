@@ -1,22 +1,19 @@
-const config = require('../../config');
-const action = require('./actions/index');
+const directions = require('../../config').directions;
 class Command {
     constructor() {
+        this.directions = directions;
     }
 
-    static run(command, robot) {
-        let params_reg = /^(?<com>\w+)( (?<x>\d+),(?<y>\d+),(?<direction>\w+))*/i;
-        let params = params_reg.test(command) ? params_reg.exec(command).groups : undefined;
-
-        const Action = action(params.com.toLowerCase());
-        if (Action !== undefined) {
-            const run = new Action(robot);
-            run.do(params, robot);
-        } else {
-            console.error("error Action!");
+    turn(facing, turnTo) {
+        let directions = this.directions;
+        let current_index = directions.indexOf(facing);
+        if (turnTo === 'LEFT') {
+            facing = directions[(directions.length - 1 + current_index) % directions.length];
+        } else if ( turnTo === 'RIGHT') {
+            facing = directions[(directions.length + 1 + current_index) % directions.length];
         }
+        return facing;
     }
-
 }
 
 module.exports = Command;

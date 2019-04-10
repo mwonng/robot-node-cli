@@ -1,13 +1,7 @@
-
-class Report {
+const Command = require('../Command');
+class Report extends Command {
     constructor() {
-        this.vectorSteps = {
-            'NORTH' : [0,1],
-            'EAST'  : [1,0],
-            'SOUTH' : [0,-1],
-            'WEST'  : [-1,0]
-        };
-        this.directions = Object.keys(this.vectorSteps);
+        super();
     }
 
     do(params, robot) {

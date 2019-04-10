@@ -4,7 +4,6 @@ const report = require('./report');
 const left = require('./left');
 const right = require('./right');
 
-
 const actions = {
     move,
     place,
