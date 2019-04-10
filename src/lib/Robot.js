@@ -1,4 +1,3 @@
-const func = require('../utils/func');
 class Robot {
     constructor(table) {
         this.table    = table;

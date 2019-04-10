@@ -1,4 +1,3 @@
-// const Command = require('./Command');
 const fs = require('fs');
 const comm = require('./Command');
 const func = require('../utils/func');
