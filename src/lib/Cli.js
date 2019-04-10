@@ -3,8 +3,9 @@ const fs      = require('fs');
 
 class Cli {
     loadCommands(filePath) {
-        var array = fs.readFileSync(filePath).toString().split("\n");
-        return array;
+        let array = fs.readFileSync(filePath).toString().split("\n");
+        let result = array.filter( command => command !== '');
+        return result;
     }
 
     run(commands, rebot) {
