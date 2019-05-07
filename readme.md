@@ -65,7 +65,7 @@ _Note: If you get a 'Invalid regular expression error', please confirm your node
 ## Test
 
 ```bash
-$ npm run test
+$ npm test
 ```
 
 or or if you using Yarn

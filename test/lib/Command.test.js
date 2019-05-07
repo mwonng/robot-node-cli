@@ -1,10 +1,10 @@
-const test = require('ava');
-const Robot = require('../../src/lib/Robot');
+const test    = require('ava');
+const Robot   = require('../../src/lib/Robot');
 const command = require('../../src/lib/Command');
-const Table = require('../../src/lib/Table');
-const sinon = require('sinon');
+const Table   = require('../../src/lib/Table');
+const sinon   = require('sinon');
 
-test.beforeEach(t => {
+test.beforeEach( t => {
     let table = new Table(5,5);
     let robot = new Robot(table);
     t.context.robot = robot;
