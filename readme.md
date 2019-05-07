@@ -115,12 +115,14 @@ REPORT
 * LEFT and RIGHT will rotate the robot 90 degrees in the specified direction without changing the position of the robot.
 * REPORT will announce the X,Y and orientation of the robot.
 * A robot that is not on the table can choose to ignore the MOVE, LEFT, RIGHT and REPORT commands.
+* Input can be from a file, or from standard input, as the developer chooses.
 * Provide test data to exercise the application.
+* The application must be a command line application.
 
 ### Constraints:
 
-The toy robot must not fall off the table during movement. This also includes the initial placement of the toy robot.
-Any move that would cause the robot to fall must be ignored.
+* The toy robot must not fall off the table during movement. This also includes the initial placement of the toy robot.
+* Any move that would cause the robot to fall must be ignored.
 
 Example Input and Output:
 
@@ -147,3 +149,13 @@ MOVE
 REPORT
 Output: 3,3,NORTH
 ```
+### Deliverables
+
+Please provide your source code, and any test code/data you using in
+developing your solution.
+
+Please engineer your solution to a standard you consider suitable for
+production. It is not required to provide any graphical output showing the
+movement of the toy robot.
+
+Please do not put your name in any of the submitted code since this makes it harder for us to review your submission anonymously.
