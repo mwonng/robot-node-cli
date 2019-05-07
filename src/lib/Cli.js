@@ -23,7 +23,7 @@ class Cli {
             const run = new Action(robot);
             run.do(params, robot);
         } else {
-            func.error("Error command!");
+            func.error(`${command} is an invalid command which has been ignored`);
         }
     }
 }

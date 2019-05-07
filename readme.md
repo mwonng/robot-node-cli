@@ -46,6 +46,8 @@ $ yarn
 
 you can change command in file `./commands.txt` to customize your commands.
 
+Note: command is not seneitive which means, command `MOVE` is same with `move`
+
 ## Run this application
 
 ```bash
